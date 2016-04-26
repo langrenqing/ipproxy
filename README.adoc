@@ -1,0 +1,28 @@
+= ip 代理
+
+== 建设目标
+* 代理htt,https请求
+* 同时对接多个第三方代理平台
+* 支持集群部署
+
+== 1.0.0目标
+* 基本可用，支付get,post请求
+* 支持图片请求
+* 参数可配置
+* https请求需要改为http
+
+== TODOLIST
+* POST请求测试          ok
+* 下载支持                      ok
+* 接入第二家代理          doing
+* HA支持
+* https支持
+
+
+== 代理列表
+* 蚂蚁代理
+**   网址：http://www.mayidaili.com/dynamic
+** 联系方式：qq群424699147 
+* 风云代理
+**   网址：http://www.fengyunip.com/api/index.html
+** 联系方式：

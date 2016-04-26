@@ -1,0 +1,1 @@
+java -jar ipproxy-0.0.1-SNAPSHOT.jar
