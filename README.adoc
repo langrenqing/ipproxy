@@ -17,13 +17,13 @@ image::./doc/ip代理方案.png[架构图]
 
 == TODOLIST
 |===
-| POST请求测试 |ok
-| 下载支持             |ok
+| POST请求测试 |ok|
+| 下载支持             |ok|
 | 接入第二家代理 |doing|2016-04-20
 | HA支持|ok|2016-04-26
-| https支持|
+| https支持|no|
 | 配置文件提至包外|ok|2016-04-27
-| 去除对jsoup的依赖|
+| 去除对jsoup的依赖|no|
 |===
 
 == 代理列表
