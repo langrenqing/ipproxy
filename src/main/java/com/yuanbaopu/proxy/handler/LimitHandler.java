@@ -1,7 +1,6 @@
 package com.yuanbaopu.proxy.handler;
 
 import java.io.IOException;
-import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
 import javax.servlet.ServletException;
@@ -17,18 +16,13 @@ import org.slf4j.LoggerFactory;
 
 public class LimitHandler extends HandlerWrapper {
 
-//	static int  DEFAULT_LIMIT            = 1;
 	static int  DEFAULT_SLEEP            = 10;
 	static int  MAX_WAIT                 = 10;
-	int         limit                    = 1;
 	protected static final Logger LOG    = LoggerFactory.getLogger(LimitHandler.class);
-	Semaphore semaphore 				 = null;
+	ProxySemaphore semaphore 		     = null;
 	
 	public LimitHandler(int limit) {
-//		if(limit > DEFAULT_LIMIT) {
-//			this.limit = DEFAULT_LIMIT;
-//		}
-		semaphore = new Semaphore(this.limit); //机器数目
+		semaphore = SemaphoreFactory.createSemaphore(limit); //机器数目
 	}
 	
 	
@@ -38,16 +32,17 @@ public class LimitHandler extends HandlerWrapper {
 			throws IOException, ServletException {
 		if(semaphore.getQueueLength() < MAX_WAIT) { // 竞争锁
 			try {
-				if(semaphore.tryAcquire(DEFAULT_SLEEP, TimeUnit.SECONDS)) {
+				AcquireResult result = semaphore.acquire(DEFAULT_SLEEP, TimeUnit.SECONDS);
+				if(result.goted()) {
 					try {
 						super.handle(target, baseRequest, request, response);
 					} finally {
-						semaphore.release();
+						semaphore.release(result);
 					}
 				} else { // 竞争失败
 					sendConnectResponse(request, response, HttpServletResponse.SC_SERVICE_UNAVAILABLE);
 				}
-			} catch (InterruptedException e1) {
+			} catch (Exception e1) {
 				sendConnectResponse(request, response, HttpServletResponse.SC_SERVICE_UNAVAILABLE);
 			} finally {
 			}
@@ -61,8 +56,6 @@ public class LimitHandler extends HandlerWrapper {
 		}
 	}
 	
-	
-
 	private void sendConnectResponse(HttpServletRequest request, HttpServletResponse response, int statusCode) {
         try {
             response.setStatus(statusCode);

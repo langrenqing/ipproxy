@@ -17,8 +17,8 @@ public class MayiAuth implements AuthProvider {
 	Map<String, String> authInfos = new HashMap<String,String>();
 	
 	public MayiAuth() {
-		authInfos.put("appkey", ProxyHelper.getProperty("mayi.appkey"));
-		authInfos.put("secret", ProxyHelper.getProperty("mayi.secret"));
+		authInfos.put("appkey", ProxyHelper.getString("mayi.appkey"));
+		authInfos.put("secret", ProxyHelper.getString("mayi.secret"));
 	}
 
 	@Override

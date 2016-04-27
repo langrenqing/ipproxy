@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.yuanbaopu</groupId>
 	<artifactId>ipproxy</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<name>ipproxy</name>
 	<description>ip proxy and ip manage</description>
 	<properties>
@@ -52,6 +52,12 @@
 			<artifactId>logback-classic</artifactId>
 			<version>1.0.13</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.curator</groupId>
+			<artifactId>curator-recipes</artifactId>
+			<version>2.9.1</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -83,12 +89,16 @@
 				<version>2.4</version>
 				<configuration>
 					<archive>  
-		            <manifest>  
-		                <addClasspath>true</addClasspath>  
-		                <classpathPrefix>lib/</classpathPrefix>  
-		                <mainClass>com.yuanbaopu.proxy.ProxyMain</mainClass>  
-		            </manifest>  
-		        </archive> 
+			            <manifest>  
+			                <addClasspath>true</addClasspath>  
+			                <classpathPrefix>lib/</classpathPrefix>  
+			                <mainClass>com.yuanbaopu.ProxyMain</mainClass>  
+			            </manifest>  
+		        	</archive>
+		        	<excludes>
+		        		<exclude>**/*.properties</exclude>
+		        		<exclude>**/*.xml</exclude>
+		        	</excludes> 
 				</configuration>
 			</plugin>
 			<plugin>

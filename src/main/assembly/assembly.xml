@@ -39,6 +39,10 @@
             <outputDirectory>/</outputDirectory>
         </fileSet>
         <fileSet>
+            <directory>${project.basedir}/src/main/resources</directory>
+            <outputDirectory>resources</outputDirectory>
+        </fileSet>
+        <fileSet>
 			<directory>target</directory>
 			<outputDirectory></outputDirectory>
 			<includes>

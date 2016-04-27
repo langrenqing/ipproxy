@@ -21,16 +21,16 @@ public class FyIProvider {
 	
 	static final Logger        logger  = LoggerFactory.getLogger(FengyunIP.class);
 	LinkedBlockingQueue<IPort> ipQueue = new LinkedBlockingQueue<IPort>();
-	ScheduledExecutorService   fetchES = Executors.newScheduledThreadPool(1);
-	ExecutorService 		   es      = null;
 	//禁止ip
 	Set<IPort> 				   fiports = new LinkedHashSet<IPort>();
 	
+	ScheduledExecutorService   fetchES = Executors.newScheduledThreadPool(1);
+	ExecutorService 		   es      = null;
+	
 	public FyIProvider() {
-		int time    = ProxyHelper.getPropertyInt("fengyun.fetch.schdule");
-		fetchES.scheduleAtFixedRate(new FetchHandler(), 2, time, TimeUnit.SECONDS);
-		int threads = ProxyHelper.getPropertyInt("fengyun.check.threads");
-		es          = Executors.newFixedThreadPool(threads);
+		fetchES.scheduleAtFixedRate(new FetchHandler(), 2, 
+				ProxyHelper.getInt("fengyun.fetch.schdule"), TimeUnit.SECONDS);
+		es = Executors.newFixedThreadPool(ProxyHelper.getInt("fengyun.check.threads"));
 	}
 	
 	public IPort take() throws InterruptedException {

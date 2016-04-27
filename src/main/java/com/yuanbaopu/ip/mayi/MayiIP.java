@@ -10,8 +10,8 @@ public class MayiIP extends DefaultIPool {
 	AuthProvider authp = new MayiAuth(); 
 	
 	public MayiIP() {
-		addIP(new IPort(ProxyHelper.getProperty("mayi.ip"), 
-				ProxyHelper.getPropertyInt("mayi.port"), authp));
+		addIP(new IPort(ProxyHelper.getString("mayi.ip"), 
+				ProxyHelper.getInt("mayi.port"), authp));
 	}
 
 }

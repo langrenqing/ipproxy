@@ -14,4 +14,4 @@ for jar in `ls lib/*.jar`
 do
     jars="$jars:""$jar"
 done
-java $JAVA_OPTS -cp $jars com.yuanbaopu.proxy.ProxyMain 1>/dev/null 2>&1 &
+java $JAVA_OPTS -Dprop.config=./resources/ -cp $jars com.yuanbaopu.ProxyMain 1>/dev/null 2>&1 &

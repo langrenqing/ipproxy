@@ -9,6 +9,8 @@ import org.jsoup.Connection.Method;
 import org.jsoup.Jsoup;
 import org.junit.Test;
 
+import com.yuanbaopu.util.HttpsUtil;
+
 public class TestPost {
 
 	@Test
@@ -84,10 +86,13 @@ public class TestPost {
 	@Test
 	public void testHttpsWithProxy() {
 		try {
-			String url = "https://siemens-home.tmall.com/";
+			HttpsUtil.trustEveryone();
+			String url = "http://www.jiyoujia.com";
 			Connection conn = Jsoup.connect(url);
 			conn.validateTLSCertificates(false);
 			String html = conn.timeout(21000).proxy("localhost", 8888,null).execute().body();
+			System.out.println(html);
+			conn.timeout(21000).proxy("localhost", 8888,null).execute().body();
 			System.out.println(html);
 		} catch(Exception e) {
 			e.printStackTrace();

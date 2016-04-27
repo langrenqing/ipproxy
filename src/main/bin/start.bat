@@ -1,1 +1,1 @@
-java -jar ipproxy-0.0.1-SNAPSHOT.jar
+java -Dprop.config=./resources/ -jar ipproxy-0.0.2-SNAPSHOT.jar 

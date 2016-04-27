@@ -1,5 +1,7 @@
 package com.yuanbaopu.util;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
@@ -23,13 +25,31 @@ public class PropertiesUtil {
         try {
     	    inputStream = classLoader.getResourceAsStream(propertiesName);
             properties.load(inputStream);
-        }
-        finally {
+        } finally {
             if (inputStream != null) {
             	inputStream.close();
             }
         }
         return properties;
     }
+    
+    public Properties loadFromPath(final String propertiesPath) {
+    	Properties properties = new Properties();
+    	InputStream inputStream = null;
+    	try {
+    		inputStream = new FileInputStream(propertiesPath);
+    		properties.load(inputStream);
+		} catch(Exception e) { 
+		} finally {
+			if (inputStream != null) {
+            	try {
+					inputStream.close();
+				} catch (IOException e) {
+				}
+            }
+		}
+    	return properties;
+    }
+    
 	
 }

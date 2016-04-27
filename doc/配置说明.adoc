@@ -1,0 +1,17 @@
+= 配置说明
+
+== 基础配置
+|===
+| 配置名称                                   | 默认值   | 说明
+| server.port      |7777  |代理端口号
+| proxy.limit      |1|等待队列数，对于有多个第三个代理时，配置不合理
+| proxy.distributed|false |是否分布式部署
+| proxy.zk.string  |192.168.4.136:2181|zookeeper地址
+|===
+
+== 代理配置
+* 风云代理
+|===
+| fengyun.fetch.schdule|100|访问代理的间隔时间，单位为秒
+| fengyun.check.threads|5   |校验获取到的ip可用性的线程数量
+|===

@@ -13,14 +13,17 @@ image::./doc/ip代理方案.png[架构图]
 * 支持图片请求
 * 参数可配置
 * https请求需要改为http
+* 配置文件可修改
 
 == TODOLIST
 |===
-| POST请求测试 | ok
-| 下载支持          |ok
-| 接入第二家代理|doing
-| HA支持|
+| POST请求测试 |ok
+| 下载支持             |ok
+| 接入第二家代理 |doing|2016-04-20
+| HA支持|ok|2016-04-26
 | https支持|
+| 配置文件提至包外|ok|2016-04-27
+| 去除对jsoup的依赖|
 |===
 
 == 代理列表
@@ -30,3 +33,9 @@ image::./doc/ip代理方案.png[架构图]
 * 风云代理
 **   网址：http://www.fengyunip.com/api/index.html
 ** 联系方式：
+
+== 运行说明
+java -Dprop.config=./resources/ -jar ipproxy-x.x.x-SNAPSHOT.jar 
+配置文件位于：resources目录下。
+
+link:./doc/配置说明.adoc[配置说明]
