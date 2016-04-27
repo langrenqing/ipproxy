@@ -13,3 +13,4 @@ build.sh
 .idea/
 out/
 cache/
+logs/
