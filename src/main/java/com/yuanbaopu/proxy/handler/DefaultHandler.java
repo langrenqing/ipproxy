@@ -143,7 +143,6 @@ public class DefaultHandler extends HandlerWrapper {
 		}
 		//proxy
 		IPort iport = IPoolFactory.getIPool().getAIP();
-		LOG.debug(iport.toString());
 		conn.timeout(5000).proxy(iport.getIp(), iport.getPort(), iport.getAuthString());
 		return conn.execute();
 	}
