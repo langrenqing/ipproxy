@@ -2,6 +2,7 @@ package com.yuanbaopu.proxy.handler;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Enumeration;
 import java.util.Map.Entry;
 
 import javax.net.ssl.SSLHandshakeException;
@@ -129,7 +130,15 @@ public class DefaultHandler extends HandlerWrapper {
 		for(Cookie cookie : request.getCookies()) {
 			conn.cookie(cookie.getName(), cookie.getValue());
 		}
-		
+		Enumeration<String> headers = request.getHeaderNames();
+		while(headers.hasMoreElements()) {
+			String h = headers.nextElement();
+			String hv = request.getHeader(h);
+			System.out.println(h + "==" + hv);
+			if(hv != null) {
+				conn.header(h, hv);
+			}
+		}
 		//data
 		for(Entry<String, String[]> entry : request.getParameterMap().entrySet()) {
 			if(entry.getValue().length == 1) {

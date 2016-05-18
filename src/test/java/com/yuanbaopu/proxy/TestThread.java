@@ -12,7 +12,7 @@ public class TestThread {
 	@Test 
 	public void testThread() {
 		final String url = "http://shop72080290.taobao.com/";
-		final int num = 5;
+		final int num = 10;
 		List<Thread> ts = new ArrayList<Thread>();
 		for(int i = 0; i < 8; i++) {
 			final int j = i;
